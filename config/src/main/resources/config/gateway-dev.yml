@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      routes:
+        # 认证中心
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/api-auth/**
+          filters:
+            - StripPrefix=1
+        #  用户服务
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/api-user/**
+          filters:
+            - StripPrefix=1
+        #  订单服务
+        - id: order
+          uri: lb://order
+          predicates:
+            - Path=/api-order/**
+          filters:
+            - StripPrefix=1
