@@ -1,8 +1,11 @@
 package com.example.user.controller;
 
+import com.example.auth.MyUser;
 import com.example.user.config.Inner;
 import com.example.user.entity.UserEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequestMapping("/users")
 @RestController
 public class UserController {
@@ -22,6 +26,9 @@ public class UserController {
 
     @GetMapping
     public Collection<UserEntity> findAll(@RequestParam(required = false) String username) {
+        MyUser user = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info(user.toString());
+
         if (!StringUtils.isEmpty(username)) {
             return DATA.values().stream().filter(item -> item.getUsername().equals(username)).collect(Collectors.toList());
         }

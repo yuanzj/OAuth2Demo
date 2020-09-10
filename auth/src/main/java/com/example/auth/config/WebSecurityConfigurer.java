@@ -18,7 +18,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         http
                 // 授权/token/**接口可以直接访问
                 .authorizeRequests().antMatchers("/token/**").permitAll()
-                // 允许已经授权的用户访问所有请求
+                // 任何请求都必须经过身份验证
                 .anyRequest().authenticated()
                 .and().csrf().disable();
     }

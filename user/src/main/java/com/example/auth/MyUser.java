@@ -20,4 +20,11 @@ public class MyUser extends User {
         super(username, password, authorities);
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "MyUser{" +
+                "id=" + id +
+                '}';
+    }
 }

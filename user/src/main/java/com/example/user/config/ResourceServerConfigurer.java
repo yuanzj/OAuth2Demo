@@ -30,9 +30,7 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private FilterIgnorePropertiesConfig ignorePropertiesConfig;
-
-
-
+    
     @Override
     @SneakyThrows
     public void configure(HttpSecurity httpSecurity) {
@@ -43,13 +41,15 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-        DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
-        accessTokenConverter.setUserTokenConverter(new MyUserAuthenticationConverter());
-
         RemoteTokenServices tokenService = new RemoteTokenServices();
         tokenService.setClientId(clientId);
         tokenService.setClientSecret(secret);
         tokenService.setCheckTokenEndpointUrl(checkTokenEndpointUrl);
+
+        DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
+        accessTokenConverter.setUserTokenConverter(new MyUserAuthenticationConverter());
+        tokenService.setAccessTokenConverter(accessTokenConverter);
+
         resources.tokenServices(tokenService);
     }
 }
