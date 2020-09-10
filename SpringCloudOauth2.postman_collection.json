@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "83063ade-e8b5-4072-96e6-48beb68a820b",
+		"name": "SpringCloudOauth2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "01336dd6-83df-448d-80be-bceef52677ab",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9999/api-user/users",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api-user",
+						"users"
+					]
+				},
+				"description": "根据用户名查找用户"
+			},
+			"response": []
+		},
+		{
+			"name": "测试内部服务外部无法调用",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "01336dd6-83df-448d-80be-bceef52677ab",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "from",
+						"value": "inner",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:9999/api-user/users/info/admin",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api-user",
+						"users",
+						"info",
+						"admin"
+					]
+				},
+				"description": "根据用户名查找用户"
+			},
+			"response": []
+		},
+		{
+			"name": "订单列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "01336dd6-83df-448d-80be-bceef52677ab",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9999/api-order/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api-order",
+						"orders"
+					]
+				},
+				"description": "根据用户名查找用户"
+			},
+			"response": []
+		},
+		{
+			"name": "根据ID获取用户信息",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e0092a2c-029a-43f9-9c12-d4bea4d10e82",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9999/api-user/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api-user",
+						"users",
+						"1"
+					]
+				},
+				"description": "根据用户名查找用户"
+			},
+			"response": []
+		},
+		{
+			"name": "获取令牌-密码模式",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "app",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "app",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/oauth/token?grant_type=password&username=admin&password=123456&scope=all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "scope",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "服务网关获取令牌-密码模式",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "app",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "app",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9999/api-auth/oauth/token?grant_type=password&username=admin&password=123456&scope=all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"api-auth",
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "scope",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
